@@ -1,0 +1,165 @@
+/* Border box declaration 
+https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+html {
+  box-sizing: border-box;
+}
+/* inherit border-box on all elements in the universe and before and after
+ */
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+body {
+	font-family: Arial, Geneva, sans-serif;
+}
+a {
+	color: #2772B0;
+}
+.wrapper {
+	width: 97%;
+	max-width: 1200px;
+	margin: 0 auto;
+	float: none;
+	background-color: #fff;
+}
+div img {
+	width: 100%;
+	max-width: 225px; 
+}
+
+/* ===== MOBILE FIRST CSS GRID SYSTEM ===== */
+
+/* GRID CONTAINER: display: grid creates a grid container */
+/* grid-template-columns: 1fr creates a single column that takes full width */
+/* fr unit - NEW PROPERTY: Fractional unit that represents a fraction of available space */
+/* gap: 20px creates spacing between grid items (replaces margins) */
+.row {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 20px;
+}
+
+/* Background colors to visualize grid items */
+.col-1 {
+	background-color: #A3CDD9;
+	padding: 15px;
+}
+.col-2 {
+	background-color: #FFFCE6;
+	padding: 15px;
+}
+.col-3 {
+	background-color: #FFD700;
+	padding: 15px;
+}
+.col-4 {
+	background-color: #D3D3D3;
+	padding: 15px;
+}
+.col-custom {
+	background-color: #E8F4F8;
+	padding: 15px;
+}
+
+/* ===== TABLET BREAKPOINT (480px - 767px) ===== */
+@media only screen and (min-width: 480px)  {
+  
+  /* Rows 1 & 2: 2 equal columns using repeat() */
+  /* repeat() - NEW PROPERTY: Repeats a pattern, repeat(2, 1fr) = two equal columns */
+  .row {
+  	grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Row 3: Both items span full width, stacked */
+  /* grid-column: 1 / -1 - NEW PROPERTY: -1 represents the last grid line, spanning full width */
+  .col-3-narrow {
+  	grid-column: 1 / -1;
+  }
+  
+  .col-3 {
+  	grid-column: 1 / -1;
+  }
+  
+  /* Row 4: Full width */
+  .col-4 {
+  	grid-column: 1 / -1;
+  }
+  
+  /* Row 5: Reorder using grid-row to change visual position */
+  /* grid-row explicitly places items in specific rows */
+  .col-5-item1 {
+  	grid-row: 2;
+  	grid-column: 1;
+  }
+  
+  .col-5-item2 {
+  	grid-row: 1;
+  	grid-column: 1 / -1;
+  }
+  
+  .col-5-item3 {
+  	grid-row: 2;
+  	grid-column: 2;
+  }
+}
+
+/* ===== DESKTOP BREAKPOINT (768px and up) ===== */
+@media only screen and (min-width: 768px) {
+  
+  /* Standard rows: 4 equal columns */
+  .row {
+  	grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Row 1: Each item takes 1 column (default behavior) */
+  /* No grid-column needed - items auto-place in order */
+  
+  /* Row 2: Each item spans 2 columns */
+  /* span 2 - NEW PROPERTY: span keyword makes item stretch across 2 columns */
+  .col-2 {
+  	grid-column: span 2;
+  }
+  
+  /* Row 3: 1 narrow column + 3 wide columns (1:3 ratio) */
+  .col-3-narrow {
+  	grid-column: span 1;
+  }
+  
+  .col-3 {
+  	grid-column: span 3;
+  }
+  
+  /* Row 4: Full width spans all 4 columns */
+  .col-4 {
+  	grid-column: 1 / -1;
+  }
+  
+  /* Row 5: 1-2-1 layout, items return to normal order */
+  .col-5-item1 {
+  	grid-column: span 1;
+  	grid-row: auto;
+  }
+  
+  .col-5-item2 {
+  	grid-column: span 2;
+  	grid-row: auto;
+  }
+  
+  .col-5-item3 {
+  	grid-column: span 1;
+  	grid-row: auto;
+  }
+  
+  /* Row 6: 5 equal columns using custom grid */
+  /* grid-template-columns overrides the 4-column default for this specific row */
+  .row-6 {
+  	grid-template-columns: repeat(5, 1fr);
+  }
+  
+  /* justify-items: center - NEW PROPERTY: Aligns grid items horizontally within their grid cells */
+  /* This centers the content inside each legend card */
+  .row-6 {
+  	justify-items: center;
+  }
+}
